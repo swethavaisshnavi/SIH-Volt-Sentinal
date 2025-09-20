@@ -1,0 +1,22 @@
+// Define the output pin for the AC signal
+#define AC_OUTPUT_PIN 13
+
+// Define frequency (in milliseconds)
+const int AC_HALF_PERIOD = 80; // 50 Hz cycle is 20ms, so half-period is 10ms
+
+void setup() {
+  // Set the AC output pin as an output
+  pinMode(AC_OUTPUT_PIN, OUTPUT);
+  Serial.begin(115200);
+  Serial.println("ESP32 AC Signal Generator is running...");
+}
+
+void loop() {
+  // Generate the positive half of the cycle
+  digitalWrite(AC_OUTPUT_PIN, HIGH);
+  delay(AC_HALF_PERIOD);
+
+  // Generate the negative half of the cycle (GND)
+  digitalWrite(AC_OUTPUT_PIN, LOW);
+  delay(AC_HALF_PERIOD);
+}
